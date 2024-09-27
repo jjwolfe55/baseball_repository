@@ -1,0 +1,74 @@
+CREATE TABLE rosters (
+player_id VARCHAR(9),
+last_name VARCHAR(20),
+first_name VARCHAR(20),
+bat CHAR(1),
+throw CHAR(1),
+team_id VARCHAR(3),
+primary_pos VARCHAR(3),
+season_id SMALLINT,
+PRIMARY KEY (player_id,team_id,season_id)
+);
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2023allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2022allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2021allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2020allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2019allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2018allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2017allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2016allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/rosters/2015allplayers.csv"
+INTO TABLE baseball_repository.rosters
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
