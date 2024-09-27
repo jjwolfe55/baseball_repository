@@ -1,0 +1,3 @@
+SET GLOBAL local_infile=1;
+SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+SET sql_mode=(SELECT REPLACE(@@sql_mode,'ERROR_FOR_DIVISION_BY_ZERO',''));
