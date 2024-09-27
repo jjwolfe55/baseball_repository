@@ -1,0 +1,102 @@
+CREATE TABLE batting (
+game_id VARCHAR(15),
+player_id VARCHAR(9),
+team_id VARCHAR(3),
+season_id SMALLINT,
+b_lineup TINYINT,
+b_sequence TINYINT,
+integrity CHAR(8),
+b_pa TINYINT,
+b_ab TINYINT,
+b_r TINYINT,
+b_h TINYINT,
+b_d TINYINT,
+b_t TINYINT,
+b_hr TINYINT,
+b_rbi TINYINT,
+b_sh TINYINT,
+b_sf TINYINT,
+b_hbp TINYINT,
+b_bb TINYINT,
+b_ibb TINYINT,
+b_so TINYINT,
+b_sb TINYINT,
+b_cs TINYINT,
+b_gdp TINYINT,
+b_ci TINYINT,
+b_roe TINYINT,
+b_dh TINYINT,
+b_ph TINYINT,
+b_pr TINYINT,
+game_date INT,
+game_count TINYINT,
+ballpark VARCHAR(7),
+opponent VARCHAR(3),
+win_loss CHAR(2),
+game_type VARCHAR(15),
+box_score CHAR(2),
+PRIMARY KEY (game_id,player_id,team_id,season_id)
+);
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2023batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2022batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2021batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2020batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2019batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2018batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2017batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2016batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+SET GLOBAL local_infile=1;
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/batting/2015batting.csv"
+INTO TABLE baseball_repository.batting
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
