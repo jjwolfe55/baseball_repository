@@ -1,4 +1,4 @@
-CREATE TABLE batting (
+CREATE TABLE lines_batting (
 game_id VARCHAR(15),
 player_id VARCHAR(9),
 team_id VARCHAR(3),
