@@ -1,4 +1,4 @@
-CREATE TABLE rosters (
+CREATE TABLE lines_rosters (
 player_id VARCHAR(9),
 last_name VARCHAR(20),
 first_name VARCHAR(20),
