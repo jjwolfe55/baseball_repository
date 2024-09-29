@@ -120,3 +120,7 @@ GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4)) AS c
 ON a.player_id = c.player_id  AND a.team_id = c.team_id AND a.game_id = c.game_id
 WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
 GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4);
+
+DELETE
+FROM standard_batting
+WHERE b_pa = 0;
