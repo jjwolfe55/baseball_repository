@@ -24,7 +24,7 @@ SELECT DISTINCT(a.player_id) AS player_id,
  CONCAT(b.first_name,' ',b.last_name) AS player_name,
  a.team_id AS team_id, 
  SUBSTRING(a.game_date,1,4) AS season_id,
- d.d_pos AS d_pos,
+ a.d_pos AS d_pos,
  c.d_g AS d_g, 
  c.d_gs AS d_gs, 
  c.d_inn AS d_inn,
@@ -61,18 +61,5 @@ FROM lines_fielding AS a
 WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
 GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4),a.d_pos) AS c
 ON a.player_id = c.player_id  AND a.team_id = c.team_id AND a.game_id = c.game_id
-LEFT JOIN
-(SELECT DISTINCT(a.player_id) AS player_id,
-a.team_id AS team_id,
-a.game_id AS game_id,
-SUBSTRING(a.game_date,1,4) AS season_id,
-COUNT(a.player_id) AS d_g, 
-a.d_pos AS d_pos_x, 
-b.d_pos AS d_pos
-FROM lines_fielding AS a 
-INNER JOIN lookup_fielding_positions AS b
-ON a.d_pos = b.d_pos
 WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
-GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4),a.d_pos) AS d
-ON a.player_id = c.player_id  AND a.team_id = c.team_id AND a.game_id = c.game_id
 GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4),a.d_pos;
