@@ -1,0 +1,18 @@
+CREATE TABLE standard_fielding (
+player_id VARCHAR(9),
+team_id VARCHAR(3),
+season_id TINYINT,
+d_pos TINYINT,
+d_inn TINYINT,
+d_po TINYINT,
+d_a TINYINT, 
+d_e TINYINT, 
+d_dp TINYINT,
+d_tp TINYINT,
+d_pb TINYINT,        
+d_wp TINYINT,          
+d_sb TINYINT,            
+d_cs TINYINT,             
+d_gs TINYINT,
+PRIMARY KEY (game_id,player_id,team_id)
+);
