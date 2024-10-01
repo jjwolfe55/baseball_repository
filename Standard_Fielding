@@ -16,6 +16,5 @@ d_pb TINYINT,
 d_wp TINYINT,          
 d_sb TINYINT,            
 d_cs TINYINT,             
-d_gs TINYINT,
 PRIMARY KEY (game_id,player_id,team_id)
 );
