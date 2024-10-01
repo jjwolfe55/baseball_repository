@@ -3,6 +3,7 @@ player_id VARCHAR(9),
 player_name VARCHAR(45),
 team_id VARCHAR(3),
 season_id SMALLINT,
+d_pos VARCHAR(2),
 d_g TINYINT,
 d_gs TINYINT,
 d_pos TINYINT,
@@ -16,5 +17,5 @@ d_pb TINYINT,
 d_wp TINYINT,          
 d_sb TINYINT,            
 d_cs TINYINT,             
-PRIMARY KEY (game_id,player_id,team_id)
+PRIMARY KEY (game_id,player_id,team_id,d_pos)
 );
