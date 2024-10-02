@@ -19,6 +19,25 @@ d_cs SMALLINT,
 PRIMARY KEY (player_id,team_id,season_id,d_pos)
 );
 
+INSERT INTO standard_fielding (
+player_id,
+player_name,
+team_id,
+season_id,
+d_pos,
+d_g,
+d_gs,
+d_inn,
+d_po,
+d_a, 
+d_e, 
+d_dp,
+d_tp,
+d_pb,        
+d_wp,          
+d_sb,            
+d_cs
+)
 SELECT DISTINCT(a.player_id) AS player_id,
  CONCAT(b.first_name,' ',b.last_name) AS player_name,
  a.team_id AS team_id, 
