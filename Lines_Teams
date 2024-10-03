@@ -1,2 +1,59 @@
 CREATE TABLE lines_teams (
 game_id VARCHAR(15), 
+v_team_id VARCHAR(3),
+h_team_id VARCHAR(3),
+game_loc VARCHAR(7)
+game_date
+start_time
+day_time
+planned_inn
+tiebreaker
+use_dh
+h_team_bf
+game_time
+attendance
+field_condition
+precipitation
+sky_condition
+temp
+wind_direction
+wind_speed
+official_scorer
+forfeit
+ump_hp
+ump1b            
+ump2b            
+ump3b            
+umplf            
+umprf 
+wp
+lp
+save
+game_type
+v_team_runs
+h_team_runs
+winning_team
+losing_team
+
+
+forfeit          was the game forfeited - blank indicates no forfeit
+umphome          home-plate umpire, if known
+ump1b            1st-base umpire
+ump2b            2nd-base umpire
+ump3b            3rd-base umpire
+umplf            left field umpire
+umprf            right field umpire
+wp               winning pitcher
+lp               losing pitcher
+save             pitcher who earned save, if any
+gametype         type of game (e.g., regular-season, exhibition, etc.)
+vruns            visiting team runs scored
+hruns            home team runs scored
+wteam            winning team
+lteam            losing team
+line             do we know the line score of the game - blank indicates 'no'
+batteries        do we know the teams' batteries; p = pitchers, both = pitchers & catchers; blank indicates batteries not known
+lineups          do we know the teams' lineups; blank indicates 'no'
+box              do we have a box score; blank indicates 'no'
+pbp              do we have a play-by-play account; d = deduced account, y = play-by-play account from newspaper or scorecard
+season           season in which game took place
