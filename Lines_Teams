@@ -5,12 +5,12 @@ h_team_id VARCHAR(3),
 ballpark VARCHAR(7)
 game_date INT,
 game_count TINYINT,
-start_time 
+start_time VARCHAR(10)
 day_time CHAR(8),
 planned_inn TINYINT,
 tiebreaker TINYINT,
 use_dh CHAR(5),
-h_team_bf 
+h_team_bf CHAR(1),
 game_time TINYINT,
 attendance INT,
 field_condition CHAR(15),
@@ -20,7 +20,7 @@ temp SMALLINT,
 wind_direction CHAR(15),
 wind_speed TINYINT,
 official_scorer VARCHAR(9),
-forfeit 
+forfeit CHAR(1),
 ump_hp VARCHAR(9),
 ump1b VARCHAR(9),          
 ump2b VARCHAR(9),           
