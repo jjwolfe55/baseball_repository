@@ -3,8 +3,8 @@ game_id VARCHAR(15),
 v_team_id VARCHAR(3),
 h_team_id VARCHAR(3),
 location_id VARCHAR(7)
-game_date
-start_time
+game_date INT,
+start_time 
 day_time
 planned_inn
 tiebreaker
