@@ -2,24 +2,25 @@ CREATE TABLE lines_teams (
 game_id VARCHAR(15), 
 v_team_id VARCHAR(3),
 h_team_id VARCHAR(3),
-location_id VARCHAR(7)
+ballpark VARCHAR(7)
 game_date INT,
+game_count TINYINT,
 start_time 
-day_time
-planned_inn
-tiebreaker
-use_dh
-h_team_bf
-game_time
-attendance
-field_condition
-precipitation
-sky_condition
-temp
-wind_direction
-wind_speed
-official_scorer
-forfeit
+day_time CHAR(8),
+planned_inn TINYINT,
+tiebreaker TINYINT,
+use_dh CHAR(5),
+h_team_bf 
+game_time TINYINT,
+attendance INT,
+field_condition CHAR(15),
+precipitation CHAR(15),
+sky_condition CHAR(15),
+temp SMALLINT,
+wind_direction CHAR(15),
+wind_speed TINYINT
+official_scorer VARCHAR(3
+forfeit 
 ump_hp
 ump1b            
 ump2b            
