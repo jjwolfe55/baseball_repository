@@ -31,14 +31,15 @@ wp VARCHAR(9),
 lp VARCHAR(9),
 save VARCHAR(9),
 game_type VARCHAR(15),
-v_team_runs
-h_team_runs
-winning_team
-losing_team
-batteries
-lineups
-box_score
-play_by_play
-season_id
+v_team_runs TINYINT,
+h_team_runs TINYINT,
+winning_team VARCHAR(3),
+losing_team VARCHAR(3),
+batteries CHAR(1),
+lineups CHAR(1),
+batteries CHAR(7),
+box_score CHAR(1),
+play_by_play CHAR(1),
+season_id SMALLINT,
 PRIMARY KEY (   )
 );
