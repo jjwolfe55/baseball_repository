@@ -18,19 +18,19 @@ precipitation CHAR(15),
 sky_condition CHAR(15),
 temp SMALLINT,
 wind_direction CHAR(15),
-wind_speed TINYINT
-official_scorer VARCHAR(3
+wind_speed TINYINT,
+official_scorer VARCHAR(9),
 forfeit 
-ump_hp
-ump1b            
-ump2b            
-ump3b            
-umplf            
-umprf 
-wp
-lp
-save
-game_type
+ump_hp VARCHAR(9),
+ump1b VARCHAR(9),          
+ump2b VARCHAR(9),           
+ump3b VARCHAR(9),           
+umplf VARCHAR(9),           
+umprf VARCHAR(9),
+wp VARCHAR(9),
+lp VARCHAR(9),
+save VARCHAR(9),
+game_type VARCHAR(15),
 v_team_runs
 h_team_runs
 winning_team
