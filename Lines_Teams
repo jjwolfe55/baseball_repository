@@ -41,5 +41,5 @@ batteries CHAR(7),
 box_score CHAR(1),
 play_by_play CHAR(1),
 season_id SMALLINT,
-PRIMARY KEY (   )
+PRIMARY KEY (game_id)
 );
