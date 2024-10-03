@@ -1,1 +1,2 @@
 CREATE TABLE lines_teams (
+game_id VARCHAR(15), 
