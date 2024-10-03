@@ -3,6 +3,7 @@ player_id VARCHAR(9),
 player_name VARCHAR(45),
 team_id VARCHAR(3),
 season_id SMALLINT,
+throw CHAR(1),
 d_pos VARCHAR(2),
 d_g SMALLINT,
 d_gs SMALLINT,
@@ -24,6 +25,7 @@ player_id,
 player_name,
 team_id,
 season_id,
+throw,
 d_pos,
 d_g,
 d_gs,
@@ -42,7 +44,8 @@ SELECT DISTINCT(a.player_id) AS player_id,
  CONCAT(b.first_name,' ',b.last_name) AS player_name,
  a.team_id AS team_id, 
  SUBSTRING(a.game_date,1,4) AS season_id,
- a.d_pos AS d_pos,
+ b.throw AS throw,
+ d.d_pos_id AS d_pos,
  c.d_g AS d_g, 
  c.d_gs AS d_gs, 
  c.d_inn AS d_inn,
@@ -76,6 +79,13 @@ SUM(a.d_wp) AS d_wp,
 SUM(a.d_sb) AS d_sb,
 SUM(a.d_cs) AS d_cs
 FROM lines_fielding AS a
+WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
+GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4),a.d_pos) AS c
+ON a.player_id = c.player_id  AND a.team_id = c.team_id AND a.game_id = c.game_id
+INNER JOIN lookup_fielding_positions AS d
+ON a.d_pos = d.d_pos
+WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
+GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4),a.d_pos;
 WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
 GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4),a.d_pos) AS c
 ON a.player_id = c.player_id  AND a.team_id = c.team_id AND a.game_id = c.game_id
