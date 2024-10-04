@@ -2,10 +2,10 @@ CREATE TABLE lines_teams (
 game_id VARCHAR(15), 
 v_team_id VARCHAR(3),
 h_team_id VARCHAR(3),
-ballpark VARCHAR(7)
+ballpark VARCHAR(7),
 game_date INT,
 game_count TINYINT,
-start_time VARCHAR(10)
+start_time VARCHAR(10),
 day_time CHAR(8),
 planned_inn TINYINT,
 tiebreaker TINYINT,
