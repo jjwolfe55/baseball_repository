@@ -1,1 +1,9 @@
-
+SELECT a.team_id AS team_id,
+SUBSTRING(a.game_date,1,4) AS season_id,
+COUNT(a.team_id) AS g,
+SUM(CASE WHEN a.win_loss = 'w' THEN 1 ELSE 0 END) AS w,
+SUM(CASE WHEN a.win_loss = 'l' THEN 1 ELSE 0 END) AS l,
+(SUM(CASE WHEN a.win_loss = 'w' THEN 1 ELSE 0 END))/(COUNT(a.team_id)) AS win_pct
+FROM lines_teams AS a
+WHERE a.game_type = 'regular'
+GROUP BY a.team_id, season_id;
