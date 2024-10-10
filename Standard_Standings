@@ -1,3 +1,37 @@
+CREATE TABLE standard_standings (
+team_id VARCHAR(3),
+season_id SMALLINT,
+g SMALLINT,
+w SMALLINT,
+l SMALLINT,
+win_pct DECIMAL(4,3),
+h_g SMALLINT,
+h_w SMALLINT,
+h_l SMALLINT,
+h_win_pct DECIMAL(4,3),
+v_g SMALLINT,
+v_w SMALLINT,
+v_l SMALLINT,
+v_win_pct DECIMAL(4,3),
+PRIMARY KEY (team_id,season_id)
+);
+
+INSERT INTO standard_standings (
+team_id,
+season_id,
+g,
+w,
+l,
+win_pct,
+h_g,
+h_w,
+h_l,
+h_win_pct,
+v_g,
+v_w,
+v_l,
+v_win_pct
+)
 SELECT a.team_id,
 a.season_id,
 a.g,
