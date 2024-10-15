@@ -1,3 +1,19 @@
+CREATE TABLE standard_world_series (
+season_id SMALLINT,
+game_type VARCHAR(15),
+winning_team CHAR(3),
+losing_team CHAR(3),
+series_games TINYINT,
+PRIMARY KEY (season_id)
+);
+
+INSERT INTO standard_world_series (
+season_id,
+game_type,
+winning_team,
+losing_team,
+series_games
+)
 SELECT a.season_id,
 a.game_type,
 a.winning_team,
