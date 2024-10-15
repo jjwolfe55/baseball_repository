@@ -1,11 +1,11 @@
-CREATE TABLE lookup_scoring_environment (
+CREATE TABLE lookup_run_environment (
 season_id SMALLINT,
 team_count SMALLINT,
 team_runs_avg INT,
 PRIMARY KEY (season_id)
 );
 
-INSERT INTO lookup_scoring_environment (
+INSERT INTO lookup_run_environment (
 season_id,
 team_count,
 team_runs_avg
