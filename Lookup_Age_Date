@@ -1,0 +1,11 @@
+CREATE TABLE lookup_age_date (
+season_id SMALLINT,
+age_date INT,
+PRIMARY KEY (season_id)
+);
+
+LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/baseball_repository/lookup_age_date.csv"
+INTO TABLE baseball_repository.lookup_age_date
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
