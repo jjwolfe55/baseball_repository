@@ -39,6 +39,7 @@ player_id,
 player_name,
 team_id,
 season_id,
+age,
 throw,
 p_g,
 p_gs,
@@ -71,6 +72,7 @@ SELECT DISTINCT(a.player_id) AS player_id,
  CONCAT(b.first_name,' ',b.last_name) AS player_name,
  a.team_id AS team_id, 
  SUBSTRING(a.game_date,1,4) AS season_id,
+ TIMESTAMPDIFF(YEAR,CONVERT(d.birth_date, DATE), CONVERT(e.age_date, DATE)) as age,
  b.throw AS throw,
  c.p_g AS p_g, 
  c.p_gs AS p_gs,
@@ -136,5 +138,9 @@ FROM lines_pitching AS a
 WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
 GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4)) AS c
 ON a.player_id = c.player_id  AND a.team_id = c.team_id AND a.game_id = c.game_id
+LEFT JOIN lines_player_bio AS d
+ON a.player_id = d.player_id
+INNER JOIN lookup_age_date AS e
+ON SUBSTRING(a.game_date,1,4) = e.season_id
 WHERE a.integrity = 'Value' AND a.game_type = 'regular' 
 GROUP BY a.player_id,a.team_id,SUBSTRING(a.game_date,1,4);
