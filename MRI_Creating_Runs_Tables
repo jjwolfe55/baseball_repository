@@ -1,9 +1,9 @@
 CREATE TABLE mri_creating_batting_raw(
-player_id INT UNSIGNED NOT NULL,
-player_name VARCHAR(45) NOT NULL,
-team_id CHAR(3) NOT NULL,
-season_id SMALLINT UNSIGNED NOT NULL,
-age TINYINT UNSIGNED,
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
 bat CHAR(1),
 primary_pos VARCHAR(3),
 b_g INT UNSIGNED,
@@ -20,11 +20,12 @@ PRIMARY KEY (player_id, team_id, season_id)
 );
 
 CREATE TABLE mri_creating_baserunning_raw(
-player_id INT UNSIGNED NOT NULL,
-player_name VARCHAR(45) NOT NULL,
-team_id CHAR(3) NOT NULL,
-season_id SMALLINT UNSIGNED NOT NULL,
-age TINYINT UNSIGNED,
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+bat CHAR(1),
 primary_pos VARCHAR(3),
 b_sb DECIMAL(5,2) SIGNED,
 b_cs DECIMAL(5,2) SIGNED,
@@ -43,11 +44,11 @@ PRIMARY KEY (season_id)
 );
 
 CREATE TABLE mri_creating_batting_runs(
-player_id INT UNSIGNED NOT NULL,
-player_name VARCHAR(45) NOT NULL,
-team_id CHAR(3) NOT NULL,
-season_id SMALLINT UNSIGNED NOT NULL,
-age TINYINT UNSIGNED,
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
 bat CHAR(1),
 primary_pos VARCHAR(3),
 mri_batting_rc DECIMAL(5,2) SIGNED,
@@ -56,11 +57,12 @@ PRIMARY KEY (player_id, team_id, season_id)
 );
 
 CREATE TABLE mri_creating_baserunning_runs(
-player_id INT UNSIGNED NOT NULL,
-player_name VARCHAR(45) NOT NULL,
-team_id CHAR(3) NOT NULL,
-season_id SMALLINT UNSIGNED NOT NULL,
-age TINYINT UNSIGNED,
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+bat CHAR(1),
 primary_pos VARCHAR(3),
 mri_c_baserunning_rc DECIMAL(5,2) SIGNED,
 mri_c_baserunning_avg DECIMAL(5,3) SIGNED,
@@ -80,11 +82,11 @@ PRIMARY KEY(season_id)
 );
 
 CREATE TABLE mri_creating_batting_wins (
-player_id INT UNSIGNED NOT NULL,
-player_name VARCHAR(45) NOT NULL,
-team_id CHAR(3) NOT NULL,
-season_id SMALLINT UNSIGNED NOT NULL,
-age TINYINT UNSIGNED,
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
 bat CHAR(1),
 primary_pos VARCHAR(3),
 mri_batting_raa DECIMAL (4,2) SIGNED,
@@ -93,11 +95,12 @@ PRIMARY KEY (player_id, team_id, season_id)
 );
 
 CREATE TABLE mri_creating_baserunning_wins (
-player_id INT UNSIGNED NOT NULL,
-player_name VARCHAR(45) NOT NULL,
-team_id CHAR(3) NOT NULL,
-season_id SMALLINT UNSIGNED NOT NULL,
-age TINYINT UNSIGNED,
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+bat CHAR(1),
 primary_pos VARCHAR(3),
 mri_c_baserunning_raa DECIMAL (4,2) SIGNED,
 mri_c_baserunning_waa DECIMAL (4,2) SIGNED,
