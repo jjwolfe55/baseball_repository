@@ -46,3 +46,33 @@ ON a.season_id = b.season_id
 INNER JOIN standard_run_environment AS c
 ON a.team_id = c.team_id AND a.season_id = c.season_id
 GROUP BY a.player_id,a.team_id,a.season_id;
+
+INSERT INTO mri_creating_baserunning_raw (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+bat,
+primary_pos,
+b_sb,
+b_cs,
+mri_c_baserunning_raw
+)
+SELECT a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.bat,
+a.primary_pos,
+((a.b_sb*b.sb)*(c.run_adj)),
+((a.b_cs*b.cs)*(c.run_adj)),
+(((a.b_sb*b.sb)*(c.run_adj))+
+((a.b_cs*b.cs)*(c.run_adj)))
+FROM standard_batting AS a
+INNER JOIN standard_linear_weights AS b
+ON a.season_id = b.season_id
+INNER JOIN standard_run_environment AS c
+ON a.team_id = c.team_id AND a.season_id = c.season_id
+GROUP BY a.player_id,a.team_id,a.season_id;
