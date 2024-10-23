@@ -1,0 +1,105 @@
+CREATE TABLE mri_creating_batting_raw(
+player_id INT UNSIGNED NOT NULL,
+player_name VARCHAR(45) NOT NULL,
+team_id CHAR(3) NOT NULL,
+season_id SMALLINT UNSIGNED NOT NULL,
+age TINYINT UNSIGNED,
+bat CHAR(1),
+primary_pos VARCHAR(3),
+b_g INT UNSIGNED,
+b_pa INT UNSIGNED,
+b_1b DECIMAL(5,2) SIGNED,
+b_2b DECIMAL(5,2) SIGNED,
+b_3b DECIMAL(5,2) SIGNED,
+b_hr DECIMAL(5,2) SIGNED,
+b_bb DECIMAL(5,2) SIGNED,
+b_ibb DECIMAL(5,2) SIGNED,
+b_hbp DECIMAL(5,2) SIGNED,
+mri_batting_raw DECIMAL(5,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE mri_creating_baserunning_raw(
+player_id INT UNSIGNED NOT NULL,
+player_name VARCHAR(45) NOT NULL,
+team_id CHAR(3) NOT NULL,
+season_id SMALLINT UNSIGNED NOT NULL,
+age TINYINT UNSIGNED,
+primary_pos VARCHAR(3),
+b_sb DECIMAL(5,2) SIGNED,
+b_cs DECIMAL(5,2) SIGNED,
+mri_c_baserunning_raw DECIMAL(5,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE mri_calc_creating_runs (
+season_id SMALLINT UNSIGNED NOT NULL,
+total_mri_batting_raw DECIMAL(10,2) SIGNED,
+total_mri_c_baserunning_raw DECIMAL(10,2) SIGNED,
+total_mri_creating_raw DECIMAL(10,2) SIGNED,
+total_earned_runs INT,
+mri_creating_runs_adj DECIMAL(6,4),
+PRIMARY KEY (season_id)
+);
+
+CREATE TABLE mri_creating_batting_runs(
+player_id INT UNSIGNED NOT NULL,
+player_name VARCHAR(45) NOT NULL,
+team_id CHAR(3) NOT NULL,
+season_id SMALLINT UNSIGNED NOT NULL,
+age TINYINT UNSIGNED,
+bat CHAR(1),
+primary_pos VARCHAR(3),
+mri_batting_rc DECIMAL(5,2) SIGNED,
+mri_batting_avg DECIMAL(5,3) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE mri_creating_baserunning_runs(
+player_id INT UNSIGNED NOT NULL,
+player_name VARCHAR(45) NOT NULL,
+team_id CHAR(3) NOT NULL,
+season_id SMALLINT UNSIGNED NOT NULL,
+age TINYINT UNSIGNED,
+primary_pos VARCHAR(3),
+mri_c_baserunning_rc DECIMAL(5,2) SIGNED,
+mri_c_baserunning_avg DECIMAL(5,3) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE mri_calc_creating_wins (
+season_id SMALLINT UNSIGNED NOT NULL,
+total_pa INT UNSIGNED,
+total_mri_batting_rc DECIMAL (10,2) UNSIGNED,
+total_c_baserunning_chances INT UNSIGNED,
+total_mri_c_baserunning_rc DECIMAL (10,2) UNSIGNED,
+total_runs INT UNSIGNED,
+total_wins INT UNSIGNED,
+runs_per_win DECIMAL(4,2) UNSIGNED,
+PRIMARY KEY(season_id)
+);
+
+CREATE TABLE mri_creating_batting_wins (
+player_id INT UNSIGNED NOT NULL,
+player_name VARCHAR(45) NOT NULL,
+team_id CHAR(3) NOT NULL,
+season_id SMALLINT UNSIGNED NOT NULL,
+age TINYINT UNSIGNED,
+bat CHAR(1),
+primary_pos VARCHAR(3),
+mri_batting_raa DECIMAL (4,2) SIGNED,
+mri_batting_waa DECIMAL (4,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE mri_creating_baserunning_wins (
+player_id INT UNSIGNED NOT NULL,
+player_name VARCHAR(45) NOT NULL,
+team_id CHAR(3) NOT NULL,
+season_id SMALLINT UNSIGNED NOT NULL,
+age TINYINT UNSIGNED,
+primary_pos VARCHAR(3),
+mri_c_baserunning_raa DECIMAL (4,2) SIGNED,
+mri_c_baserunning_waa DECIMAL (4,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
