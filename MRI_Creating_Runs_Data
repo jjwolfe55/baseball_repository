@@ -1,0 +1,48 @@
+INSERT INTO mri_creating_batting_raw (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+bat,
+primary_pos,
+b_g,
+b_pa,
+b_1b,
+b_2b,
+b_3b,
+b_hr,
+b_bb,
+b_ibb,
+b_hbp,
+mri_batting_raw
+)
+SELECT a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.bat,
+a.primary_pos,
+a.b_g,
+a.b_pa,
+((a.b_s*b.1b)*(c.run_adj)),
+((a.b_d*b.2b)*(c.run_adj)),
+((a.b_t*b.3b)*(c.run_adj)),
+((a.b_hr*b.hr)*(c.run_adj)),
+((a.b_bb*b.bb)*(c.run_adj)),
+((a.b_ibb*b.ibb)*(c.run_adj)),
+((a.b_hbp*b.hbp)*(c.run_adj)),
+(((a.b_s*b.1b)*(c.run_adj))+
+((a.b_d*b.2b)*(c.run_adj))+
+((a.b_t*b.3b)*(c.run_adj))+
+((a.b_hr*b.hr)*(c.run_adj))+
+((a.b_bb*b.bb)*(c.run_adj))+
+((a.b_ibb*b.ibb)*(c.run_adj))+
+((a.b_hbp*b.hbp)*(c.run_adj)))
+FROM standard_batting AS a
+INNER JOIN standard_linear_weights AS b
+ON a.season_id = b.season_id
+INNER JOIN standard_run_environment AS c
+ON a.team_id = c.team_id AND a.season_id = c.season_id
+GROUP BY a.player_id,a.team_id,a.season_id;
