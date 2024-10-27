@@ -101,3 +101,28 @@ ON a.season_id = c.season_id
 GROUP BY a.season_id
 ORDER BY a.season_id DESC;
 
+INSERT INTO mri_creating_batting_runs (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+bat,
+primary_pos,
+mri_batting_rc,
+mri_batting_avg)
+SELECT a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.bat,
+a.primary_pos,
+a.mri_batting_raw*b.mri_creating_runs_adj,
+(a.mri_batting_raw*b.mri_creating_runs_adj)/c.b_pa
+FROM mri_creating_batting_raw AS a
+INNER JOIN mri_calc_creating_runs AS b
+ON a.season_id = b.season_id
+INNER JOIN standard_batting AS c
+ON a.player_id = c.player_id AND a.team_id = c.team_id AND a.season_id = c.season_id
+GROUP BY a.player_id,a.team_id,a.season_id;
