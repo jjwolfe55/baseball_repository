@@ -181,3 +181,32 @@ INNER JOIN (SELECT season_id, SUM(w) AS total_wins FROM standard_standings GROUP
 ON a.season_id = e.season_id 
 GROUP BY a.season_id
 ORDER BY a.season_id DESC;
+
+INSERT INTO mri_creating_batting_wins (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+bat,
+primary_pos,
+mri_batting_raa,
+mri_batting_waa)
+SELECT 
+a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.bat,
+a.primary_pos,
+((b.mri_batting_rc)-(a.b_pa*(c.total_mri_batting_rc/c.total_pa))),
+((b.mri_batting_rc)-(a.b_pa*(c.total_mri_batting_rc/c.total_pa)))/c.runs_per_win
+FROM standard_batting AS a
+INNER JOIN mri_creating_batting_runs AS b
+ON a.player_id = b.player_id AND a.team_id = b.team_id AND a.season_id = b.season_id
+INNER JOIN mri_calc_creating_wins AS c
+ON a.season_id = c.season_id
+GROUP BY a.player_id,
+a.team_id,
+a.season_id;
