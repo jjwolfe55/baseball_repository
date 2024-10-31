@@ -113,7 +113,7 @@ mri_pitching_waa DECIMAL (4,2) SIGNED,
 PRIMARY KEY (player_id, team_id, season_id)
 );
 
-CREATE TABLE preventing_baserunning_wins (
+CREATE TABLE mri_preventing_baserunning_wins (
 player_id VARCHAR(9),
 player_name VARCHAR(45),
 team_id VARCHAR(3),
@@ -126,7 +126,7 @@ mri_p_baserunning_waa DECIMAL (4,2) SIGNED,
 PRIMARY KEY (player_id, team_id, season_id,d_pos)
 );
 
-CREATE TABLE calc_f_preventing_wins (
+CREATE TABLE mri_calc_f_preventing_wins (
 season_id SMALLINT UNSIGNED NOT NULL,
 pos CHAR(3),
 total_fielding_chances INT UNSIGNED,
@@ -134,7 +134,7 @@ total_mri_fielding_rc DECIMAL (10,2) SIGNED,
 PRIMARY KEY(season_id,pos)
 );
 
-CREATE TABLE preventing_fielding_wins (
+CREATE TABLE mri_preventing_fielding_wins (
 player_id VARCHAR(9),
 player_name VARCHAR(45),
 team_id VARCHAR(3),
