@@ -1,1 +1,150 @@
+CREATE TABLE mri_preventing_pitching_raw (
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+p_g INT UNSIGNED,
+p_gs INT UNSIGNED,
+p_ip DECIMAL(4,1) UNSIGNED,
+p_bf INT UNSIGNED,
+p_s DECIMAL(6,2) SIGNED,
+p_d DECIMAL(6,2) SIGNED,
+p_t DECIMAL(6,2) SIGNED,
+p_hr DECIMAL(6,2) SIGNED,
+p_bb DECIMAL(6,2) SIGNED,
+p_ibb DECIMAL(6,2) SIGNED,
+p_hbp DECIMAL(6,2) SIGNED,
+p_sb DECIMAL(5,2) SIGNED,
+mri_pitching_raw DECIMAL(6,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
 
+CREATE TABLE mri_preventing_baserunning_raw (
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+d_pos VARCHAR(2),
+d_sb DECIMAL(5,2) SIGNED,
+d_cs DECIMAL(5,2) SIGNED,
+mri_p_baserunning_raw DECIMAL(5,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id, d_pos)
+);
+
+CREATE TABLE mri_calc_preventing_runs (
+season_id SMALLINT UNSIGNED NOT NULL,
+total_mri_pitching_raw DECIMAL(10,2) SIGNED,
+total_mri_p_baserunning_raw DECIMAL(10,2) SIGNED,
+total_mri_preventing_raw DECIMAL(10,2) SIGNED,
+total_earned_runs INT,
+mri_preventing_runs_adj DECIMAL(6,4),
+total_errors INT,
+total_unearned_runs INT,
+error_cost DECIMAL(5,4) UNSIGNED,
+PRIMARY KEY (season_id)
+);
+
+CREATE TABLE mri_preventing_pitching_runs(
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+mri_pitching_rc DECIMAL(5,2) SIGNED,
+mri_pitching_avg DECIMAL(5,3) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE mri_preventing_baserunning_runs(
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+d_pos VARCHAR(2),
+mri_p_baserunning_rc DECIMAL(5,2) SIGNED,
+mri_p_baserunning_avg DECIMAL(5,3) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id,d_pos)
+);
+
+CREATE TABLE mri_preventing_fielding_runs (
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+d_pos VARCHAR(2),
+d_g SMALLINT UNSIGNED,
+d_inn DECIMAL(5,1) UNSIGNED,
+mri_fielding_range DECIMAL(10,3) SIGNED,
+mri_fielding_rc DECIMAL(10,2) SIGNED,
+mri_fielding_avg DECIMAL(5,3) SIGNED,
+PRIMARY KEY (player_id, team_id,d_pos,season_id)
+);
+
+CREATE TABLE mri_calc_preventing_wins (
+season_id SMALLINT UNSIGNED NOT NULL,
+total_tbf INT UNSIGNED,
+total_mri_pitching_rc DECIMAL (10,2) SIGNED,
+total_p_baserunning_chances INT UNSIGNED,
+total_mri_p_baserunning_rc DECIMAL (10,2) SIGNED,
+total_runs INT UNSIGNED,
+total_wins INT UNSIGNED,
+runs_per_win DECIMAL(4,2) UNSIGNED,
+PRIMARY KEY(season_id)
+);
+
+CREATE TABLE mri_preventing_pitching_wins (
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+mri_pitching_raa DECIMAL (4,2) SIGNED,
+mri_pitching_waa DECIMAL (4,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id)
+);
+
+CREATE TABLE preventing_baserunning_wins (
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+d_pos VARCHAR(2),
+mri_p_baserunning_raa DECIMAL (4,2) SIGNED,
+mri_p_baserunning_waa DECIMAL (4,2) SIGNED,
+PRIMARY KEY (player_id, team_id, season_id,d_pos)
+);
+
+CREATE TABLE calc_f_preventing_wins (
+season_id SMALLINT UNSIGNED NOT NULL,
+pos CHAR(3),
+total_fielding_chances INT UNSIGNED,
+total_mri_fielding_rc DECIMAL (10,2) SIGNED,
+PRIMARY KEY(season_id,pos)
+);
+
+CREATE TABLE preventing_fielding_wins (
+player_id VARCHAR(9),
+player_name VARCHAR(45),
+team_id VARCHAR(3),
+season_id SMALLINT,
+age SMALLINT,
+throw CHAR(1),
+d_pos VARCHAR(2),
+d_g SMALLINT UNSIGNED,
+d_inn DECIMAL(5,1) UNSIGNED,
+mri_fielding_raa DECIMAL(4,2) SIGNED,
+mri_fielding_waa DECIMAL(4,2) SIGNED,
+PRIMARY KEY (player_id,season_id,team_id,d_pos)
+);
