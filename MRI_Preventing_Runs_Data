@@ -54,3 +54,34 @@ INNER JOIN standard_fielding AS d
 ON a.player_id = d.player_id AND a.team_id = d.team_id AND a.season_id = d.season_id
 WHERE d.d_pos = 'p'
 GROUP BY a.player_id,a.team_id,a.season_id;
+
+INSERT INTO mri_preventing_baserunning_raw (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+throw,
+d_pos,
+d_sb,
+d_cs,
+mri_p_baserunning_raw)
+SELECT 
+a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.throw,
+a.d_pos,
+(((a.d_sb*b.sb)*(c.run_adj))*1/2),
+((a.d_cs*b.cs)*(c.run_adj)),
+((((a.d_sb*b.sb)*(c.run_adj))*1/2)+
+((a.d_cs*b.cs)*(c.run_adj)))
+FROM standard_fielding AS a
+INNER JOIN standard_linear_weights AS b
+ON a.season_id = b.season_id
+INNER JOIN standard_run_environment AS c
+ON a.team_id = c.team_id AND a.season_id = c.season_id
+WHERE a.d_pos = 'c'
+GROUP BY a.player_id,a.team_id,a.season_id;
