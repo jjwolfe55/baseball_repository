@@ -85,3 +85,40 @@ INNER JOIN standard_run_environment AS c
 ON a.team_id = c.team_id AND a.season_id = c.season_id
 WHERE a.d_pos = 'c'
 GROUP BY a.player_id,a.team_id,a.season_id;
+
+INSERT INTO mri_calc_preventing_runs (
+season_id,
+total_mri_pitching_raw,
+total_mri_p_baserunning_raw,
+total_mri_preventing_raw,
+total_earned_runs,
+mri_preventing_runs_adj,
+total_errors,
+total_unearned_runs,
+error_cost)
+SELECT 
+a.season_id,
+a.total_mri_pitching_raw,
+b.total_mri_p_baserunning_raw,
+a.total_mri_pitching_raw + b.total_mri_p_baserunning_raw,
+c.total_earned_runs,
+((c.total_earned_runs)/(a.total_mri_pitching_raw + b.total_mri_p_baserunning_raw)),
+d.total_errors,
+e.total_unearned_runs,
+((e.total_unearned_runs)/(d.total_errors))
+FROM (SELECT season_id, SUM(mri_pitching_raw) AS total_mri_pitching_raw
+FROM mri_preventing_pitching_raw GROUP BY season_id) AS a
+INNER JOIN (SELECT season_id, SUM(mri_p_baserunning_raw) AS total_mri_p_baserunning_raw
+FROM mri_preventing_baserunning_raw GROUP BY season_id) AS b
+ON a.season_id = b.season_id
+INNER JOIN (SELECT season_id, SUM(p_er) AS total_earned_runs
+FROM standard_pitching GROUP BY season_id) AS c
+ON a.season_id = c.season_id
+INNER JOIN (SELECT season_id, SUM(d_e) AS total_errors
+FROM standard_fielding GROUP BY season_id) AS d
+ON a.season_id = d.season_id
+INNER JOIN (SELECT season_id, (SUM(p_r) - SUM(p_er)) AS total_unearned_runs
+FROM standard_pitching GROUP BY season_id) AS e
+ON a.season_id = e.season_id
+GROUP BY a.season_id
+ORDER BY a.season_id DESC;
