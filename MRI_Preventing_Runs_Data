@@ -175,3 +175,40 @@ INNER JOIN standard_fielding AS c
 ON a.player_id = c.player_id AND a.team_id = c.team_id AND a.season_id = c.season_id AND a.d_pos = c.d_pos
 WHERE c.d_pos = 'c'
 GROUP BY a.player_id,a.team_id,a.season_id;
+
+INSERT INTO mri_preventing_fielding_runs (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+throw,
+d_pos,
+d_g,
+d_inn,
+mri_fielding_range,
+mri_fielding_rc,
+mri_fielding_avg)
+SELECT 
+a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.throw,
+a.d_pos,
+a.d_g,
+a.d_inn,
+(((a.d_a)+(a.d_po)+(a.d_e))/(a.d_inn)),
+(((a.d_e))*b.error_cost),
+1-(((a.d_e))/((a.d_a)+(a.d_po)+(a.d_e)))
+FROM standard_fielding AS a
+INNER JOIN mri_calc_preventing_runs AS b
+ON a.season_id = b.season_id
+INNER JOIN standard_linear_weights AS c
+ON a.season_id = c.season_id
+GROUP BY a.player_id,
+a.team_id,
+a.d_pos,
+a.season_id;
+
