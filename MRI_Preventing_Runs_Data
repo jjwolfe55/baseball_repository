@@ -214,7 +214,7 @@ a.season_id;
 
 INSERT INTO mri_calc_preventing_wins (
 season_id,
-total_tbf,
+total_p_bf,
 total_mri_pitching_rc,
 total_p_baserunning_chances,
 total_mri_p_baserunning_rc,
