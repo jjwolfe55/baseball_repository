@@ -300,3 +300,17 @@ WHERE a.d_pos = 'C'
 GROUP BY a.player_id,
 a.team_id,
 a.season_id;
+
+INSERT INTO mri_calc_f_preventing_wins (
+season_id,
+d_pos,
+total_mri_fielding_rc,
+total_fielding_chances)
+SELECT *
+FROM (
+    SELECT a.season_id, a.d_pos, SUM(b.mri_fielding_rc) AS total_mri_fielding_rc, (SUM(a.d_a)+SUM(a.d_po)+SUM(a.d_e)) AS total_fielding_chances
+FROM standard_fielding AS a
+INNER JOIN mri_preventing_fielding_runs AS b
+ON a.player_id = b.player_id AND a.team_id = b.team_id AND a.season_id = b.season_id AND a.d_pos = b.d_pos
+GROUP BY a.season_id, a.d_pos
+) AS mri_calc_f_preventing_wins;
