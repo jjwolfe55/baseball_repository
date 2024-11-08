@@ -244,3 +244,29 @@ ON a.season_id = f.season_id
 GROUP BY a.season_id
 ORDER BY a.season_id DESC;
 
+INSERT INTO mri_preventing_pitching_wins (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+throw,
+mri_pitching_raa,
+mri_pitching_waa)
+SELECT 
+a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.throw,
+((b.mri_pitching_rc)-(a.p_bf*(c.total_mri_pitching_rc/c.total_p_bf))),
+(((b.mri_pitching_rc)-(a.p_bf*(c.total_mri_pitching_rc/c.total_p_bf)))/c.runs_per_win)*-1
+FROM standard_pitching AS a
+INNER JOIN mri_preventing_pitching_runs AS b
+ON a.player_id = b.player_id AND a.team_id = b.team_id AND a.season_id = b.season_id
+INNER JOIN mri_calc_preventing_wins AS c
+ON a.season_id = c.season_id
+GROUP BY a.player_id,
+a.team_id,
+a.season_id;
