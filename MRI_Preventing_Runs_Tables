@@ -128,10 +128,10 @@ PRIMARY KEY (player_id, team_id, season_id,d_pos)
 
 CREATE TABLE mri_calc_f_preventing_wins (
 season_id SMALLINT UNSIGNED NOT NULL,
-pos CHAR(3),
+d_pos CHAR(3),
 total_fielding_chances INT UNSIGNED,
 total_mri_fielding_rc DECIMAL (10,2) SIGNED,
-PRIMARY KEY(season_id,pos)
+PRIMARY KEY(season_id,d_pos)
 );
 
 CREATE TABLE mri_preventing_fielding_wins (
