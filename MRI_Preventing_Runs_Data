@@ -212,3 +212,35 @@ a.team_id,
 a.d_pos,
 a.season_id;
 
+INSERT INTO mri_calc_preventing_wins (
+season_id,
+total_tbf,
+total_mri_pitching_rc,
+total_p_baserunning_chances,
+total_mri_p_baserunning_rc,
+total_runs,
+total_wins,
+runs_per_win)
+SELECT 
+a.season_id,
+a.total_p_bf,
+b.total_mri_pitching_rc,
+c.total_p_baserunning_chances,
+d.total_mri_p_baserunning_rc,
+e.total_runs,
+f.total_wins,
+e.total_runs/f.total_wins
+FROM (SELECT season_id, SUM(p_bf) AS total_p_bf FROM standard_pitching GROUP BY season_id) AS a
+INNER JOIN (SELECT season_id, SUM(mri_pitching_rc) AS total_mri_pitching_rc FROM mri_preventing_pitching_runs GROUP BY season_id) AS b
+ON a.season_id = b.season_id
+INNER JOIN (SELECT season_id, (SUM(d_sb)+SUM(d_cs)) AS total_p_baserunning_chances FROM standard_fielding WHERE d_pos = 'c' GROUP BY season_id) AS c
+ON a.season_id = c.season_id
+INNER JOIN (SELECT season_id, SUM(mri_p_baserunning_rc) AS total_mri_p_baserunning_rc FROM mri_preventing_baserunning_runs GROUP BY season_id) AS d
+ON a.season_id = d.season_id
+INNER JOIN (SELECT season_id, SUM(b_r) AS total_runs FROM standard_batting GROUP BY season_id) AS e
+ON a.season_id = e.season_id
+INNER JOIN (SELECT season_id, SUM(w) AS total_wins FROM standard_standings GROUP BY season_id) AS f
+ON a.season_id = f.season_id 
+GROUP BY a.season_id
+ORDER BY a.season_id DESC;
+
