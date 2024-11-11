@@ -314,3 +314,36 @@ INNER JOIN mri_preventing_fielding_runs AS b
 ON a.player_id = b.player_id AND a.team_id = b.team_id AND a.season_id = b.season_id AND a.d_pos = b.d_pos
 GROUP BY a.season_id, a.d_pos
 ) AS mri_calc_f_preventing_wins;
+
+INSERT INTO mri_preventing_fielding_wins (
+player_id,
+player_name,
+team_id,
+season_id,
+age,
+throw,
+d_pos,
+d_g,
+d_inn,
+mri_fielding_raa,
+mri_fielding_waa)
+SELECT 
+a.player_id,
+a.player_name,
+a.team_id,
+a.season_id,
+a.age,
+a.throw,
+a.d_pos,
+a.d_g,
+a.d_inn,
+((b.mri_fielding_rc)-(((a.d_a)+(a.d_e)+(a.d_po))*(c.total_mri_fielding_rc/c.total_fielding_chances))),
+(((b.mri_fielding_rc)-(((a.d_a)+(a.d_e)+(a.d_po))*(c.total_mri_fielding_rc/c.total_fielding_chances)))/d.runs_per_win)*-1
+FROM standard_fielding AS a
+INNER JOIN mri_preventing_fielding_runs AS b
+ON a.player_id = b.player_id AND a.team_id = b.team_id AND a.season_id = b.season_id AND a.d_pos = b.d_pos
+INNER JOIN mri_calc_f_preventing_wins AS c
+ON a.season_id = c.season_id AND a.d_pos = c.d_pos
+INNER JOIN mri_calc_preventing_wins AS d
+ON a.season_id = d.season_id
+GROUP BY a.player_id,a.team_id,a.d_pos,a.season_id;
