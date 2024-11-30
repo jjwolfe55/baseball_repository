@@ -247,3 +247,30 @@ box_score CHAR(2),
 PRIMARY KEY (game_id,player_id,team_id)
 );
 
+CREATE TABLE lines_fielding (
+game_id VARCHAR(15), 
+player_id VARCHAR(9),
+team_id VARCHAR(3),
+d_sequence TINYINT,
+d_pos TINYINT,
+integrity CHAR(8),
+d_ifouts TINYINT,
+d_po TINYINT,
+d_a TINYINT,
+d_e TINYINT,
+d_dp TINYINT,
+d_tp TINYINT,
+d_pb TINYINT,
+d_wp TINYINT,
+d_sb TINYINT,
+d_cs TINYINT,
+d_gs TINYINT,
+game_date INT,
+game_count TINYINT,
+ballpark VARCHAR(7),
+opponent VARCHAR(3),
+win_loss CHAR(2),
+game_type VARCHAR(15),
+box_score CHAR(2),
+PRIMARY KEY (game_id,player_id,team_id)
+);
