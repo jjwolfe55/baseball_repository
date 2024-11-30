@@ -155,6 +155,17 @@ box_score CHAR(2),
 PRIMARY KEY (game_id,team_id)
 );
 
+CREATE TABLE lines_rosters (
+player_id VARCHAR(9),
+last_name VARCHAR(20),
+first_name VARCHAR(20),
+bat CHAR(1),
+throw CHAR(1),
+team_id VARCHAR(3),
+primary_pos VARCHAR(3),
+PRIMARY KEY (player_id,team_id)
+);
+
 CREATE TABLE lines_batting (
 game_id VARCHAR(15),
 player_id VARCHAR(9),
